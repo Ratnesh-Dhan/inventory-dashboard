@@ -47,7 +47,7 @@ const LeftDashboard = () => {
   // const lables = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "jul"];
 
   return (
-    <div className="gap-2 w-[50vw] pl-2">
+    <div className="gap-2 w-[50vw] pl-2 mb-3">
       <div className=" darker px-3">
         {/* <CustomTable entries={entries} setEntries={setEntries} /> */}
         <VirtualizedTable entries={entries} setEntries={setEntries} />
@@ -57,7 +57,7 @@ const LeftDashboard = () => {
           <span className="text-xl">Current Status</span>
           <p className="text-4xl">{total}</p>
         </div>
-        <div id="graph-area" className="py-10">
+        <div id="graph-area" className="pb-8">
           {/* h-[45vh] */}
           <ModifiedGraph entries={perMinute} />
         </div>
