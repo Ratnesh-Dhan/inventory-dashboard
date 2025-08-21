@@ -17,9 +17,12 @@ const VirtualizedTable: React.FC<VirtualizedTableProps> = ({
   const listRef = useRef<List>(null);
   const outerRef = useRef<HTMLDivElement>(null); // ✅ correct ref for scroll container
   const [autoScroll, setAutoScroll] = useState(true);
+  const eventsorceref = useRef<EventSource | null>(null);
 
   useEffect(() => {
+    if (eventsorceref.current) return;
     const eventSource = new EventSource("http://localhost:8000/stream");
+    eventsorceref.current = eventSource;
     eventSource.onmessage = (event) => {
       const newEntry: Entry = JSON.parse(event.data);
       setEntries((prev) => [...prev, newEntry]);
@@ -27,9 +30,11 @@ const VirtualizedTable: React.FC<VirtualizedTableProps> = ({
     eventSource.onerror = (err) => {
       console.log("SSE connetion error ", err);
       eventSource.close();
+      eventsorceref.current = null;
     };
     return () => {
       eventSource.close();
+      eventsorceref.current = null;
     };
   }, []);
   // Auto scroll when new entries arrive

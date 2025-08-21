@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
 import Graph from "./Graph";
-import CustomTable from "./CustomTable";
 import withAggregation from "@/HOC/GraphTimeChange";
 import { Entry } from "@/types/entry";
 import { PerMinute } from "@/types/perminute";
@@ -29,6 +28,13 @@ const LeftDashboard = () => {
       console.log("SSE error :", err);
       eventSource.close();
       pmref.current = null;
+
+      // Reconnected after 3s
+      setTimeout(() => {
+        pmref.current = new EventSource(
+          "http://localhost:8000/perminute_stream"
+        );
+      }, 3000);
     };
 
     return () => {
