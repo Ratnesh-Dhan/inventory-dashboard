@@ -79,7 +79,23 @@ const CustomTable: React.FC<CustomTableProps> = ({ entries, setEntries }) => {
         <span className="each-header">Status</span>
       </div>
       <div className="overflow-auto h-[40vh]" ref={containerRef}>
-        Table
+        <List
+          height={400}
+          itemCount={entries.length}
+          itemSize={40}
+          width="100%"
+        >
+          {({ index }) => {
+            const item = entries[index];
+            return (
+              <div className="flex justify-between px-4 py-2 border-b border-gray-200">
+                <span>{item.count}</span>
+                <span>{item.time}</span>
+                <span>{item.status}</span>
+              </div>
+            );
+          }}
+        </List>
       </div>
     </React.Fragment>
   );

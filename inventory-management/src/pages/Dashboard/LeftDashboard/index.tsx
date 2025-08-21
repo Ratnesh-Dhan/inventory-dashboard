@@ -4,6 +4,7 @@ import CustomTable from "./CustomTable";
 import withAggregation from "@/HOC/GraphTimeChange";
 import { Entry } from "@/types/entry";
 import { PerMinute } from "@/types/perminute";
+import VirtualizedTable from "./VirtualizedTable";
 
 const ModifiedGraph = withAggregation(Graph);
 
@@ -48,7 +49,8 @@ const LeftDashboard = () => {
   return (
     <div className="gap-2 w-[50vw] pl-2">
       <div className=" darker px-3">
-        <CustomTable entries={entries} setEntries={setEntries} />
+        {/* <CustomTable entries={entries} setEntries={setEntries} /> */}
+        <VirtualizedTable entries={entries} setEntries={setEntries} />
       </div>
       <div className="darker mt-2 px-3 flex flex-row-reverse">
         <div>
