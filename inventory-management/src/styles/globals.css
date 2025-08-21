@@ -43,8 +43,8 @@ body {
 }
 
 .button {
-  margin: 0px 5px;
-  padding: 1px 4px;
+  margin: 0px 4px;
+  padding: 1px 8px;
   background-color: #2563eb;
   color: #fff;
   border: none;
@@ -67,4 +67,12 @@ body {
   background-color: #94a3b8;
   cursor: not-allowed;
   opacity: 0.7;
+}
+
+.each-header {
+  border: 1px solid #a0c878;
+  padding: 5px 18px;
+  background-color: #a0c878;
+  font-weight: 600;
+  border-radius: 0.25rem;
 }

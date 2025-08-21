@@ -1,15 +1,14 @@
 import { PerMinute } from "@/types/perminute";
 import { GraphProps } from "@/types/graphProps";
 import React, { useMemo, useState } from "react";
-import { elements } from "chart.js";
 
 const withAggregation = (
   IncomingComponent: React.ComponentType<GraphProps>
 ) => {
-  const WithAggregation: React.FC<{ entries: PerMinute[]; title?: string }> = ({
-    entries,
-    title,
-  }) => {
+  const WithAggregation: React.FC<{
+    entries: PerMinute[];
+    title?: string;
+  }> = ({ entries, title }) => {
     const [mode, setMode] = useState<"minute" | "hour" | "day">("minute");
 
     const { labels, values } = useMemo(() => {
@@ -67,20 +66,27 @@ const withAggregation = (
     }, [entries, mode]);
 
     return (
-      <div className="border border-blue m-38">
-        <div>
-          <button onClick={() => setMode("minute")} className="button">
-            Minute
-          </button>
-          <button onClick={() => setMode("hour")} className="button">
-            Hour
-          </button>
-          <button onClick={() => setMode("day")} className="button">
-            Day
-          </button>
+      <React.Fragment>
+        <div className="transform -translate-x-5 translate-y-5">
+          <div className="relative">
+            <div className="absolute transform translate-x-5">
+              <button onClick={() => setMode("minute")} className="button">
+                Minute
+              </button>
+              <button onClick={() => setMode("hour")} className="button">
+                Hour
+              </button>
+              <button onClick={() => setMode("day")} className="button">
+                Day
+              </button>
+            </div>
+          </div>
+          {/* <div className={`w-[${width * 10}vw] mt-10`}> */}
+          <div className="w-[35vw] mt-10 h-[35vh]" id="modified-graph">
+            <IncomingComponent labels={labels} values={values} title={title} />
+          </div>
         </div>
-        <IncomingComponent labels={labels} values={values} title={title} />
-      </div>
+      </React.Fragment>
     );
   };
   return WithAggregation;

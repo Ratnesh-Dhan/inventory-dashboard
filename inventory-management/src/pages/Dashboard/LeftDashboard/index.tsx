@@ -55,7 +55,8 @@ const LeftDashboard = () => {
           <span className="text-xl">Current Status</span>
           <p className="text-4xl">{total}</p>
         </div>
-        <div id="graph-area" className="h-[45vh]">
+        <div id="graph-area" className="py-10">
+          {/* h-[45vh] */}
           <ModifiedGraph entries={perMinute} />
         </div>
       </div>

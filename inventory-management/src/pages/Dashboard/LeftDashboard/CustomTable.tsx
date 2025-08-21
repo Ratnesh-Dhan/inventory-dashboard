@@ -1,14 +1,6 @@
 "use client";
 import { Entry } from "@/types/entry";
-import {
-  getKeyValue,
-  Table,
-  TableBody,
-  TableCell,
-  TableColumn,
-  TableHeader,
-  TableRow,
-} from "@heroui/table";
+import { FixedSizeList as List } from "react-window";
 import React, { useEffect, useRef, useState } from "react";
 
 const columns = [
@@ -81,33 +73,13 @@ const CustomTable: React.FC<CustomTableProps> = ({ entries, setEntries }) => {
   return (
     <React.Fragment>
       <span className="text-xl">Recent Count Updates</span>
+      <div id="count-table-header" className="flex justify-between ml-5 mr-36">
+        <span className="each-header">Count</span>
+        <span className="each-header">Time</span>
+        <span className="each-header">Status</span>
+      </div>
       <div className="overflow-auto h-[40vh]" ref={containerRef}>
-        <Table
-          aria-label="Example table with dynamic content"
-          className="border-collapse w-full"
-        >
-          <TableHeader columns={columns} className="sticky top-0 z-10">
-            {(column) => (
-              <TableColumn
-                key={column.key}
-                className="bg-gray-700 rounded-sm sticky top-0 z-10"
-              >
-                {column.label}
-              </TableColumn>
-            )}
-          </TableHeader>
-          <TableBody items={entries}>
-            {(item) => (
-              <TableRow key={item.id}>
-                {(columnKey) => (
-                  <TableCell className="border-b border-gray-200 p-2">
-                    {getKeyValue(item, columnKey)}
-                  </TableCell>
-                )}
-              </TableRow>
-            )}
-          </TableBody>
-        </Table>
+        Table
       </div>
     </React.Fragment>
   );

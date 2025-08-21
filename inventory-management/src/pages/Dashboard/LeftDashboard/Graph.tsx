@@ -25,13 +25,13 @@ ChartJS.register(
 
 const Graph = ({ labels, values, title }: GraphProps) => {
   const data = {
-    // labels: ["Jan", "Feb", "Mar", "Apr", "May"],
-    labels: labels,
+    labels: ["Jan", "Feb", "Mar", "Apr", "May"],
+    // labels: labels,
     datasets: [
       {
         label: "Sales",
-        // data: [12, 19, 3, 5, 2],
-        data: values,
+        data: [12, 19, 3, 5, 2],
+        // data: values,
         borderColor: "rgb(75, 192, 192)",
         backgroundColor: "rgba(75, 192, 192, 0.2)",
       },
